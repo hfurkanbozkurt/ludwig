@@ -237,7 +237,7 @@ class ImageFeatureMixin(BaseFeatureMixin):
             for img in input_feature_col.head(sample_size):
                 try:
                     sample.append(read_image(get_image_from_path(src_path, img, ret_bytes=True)))
-                except requests.exceptions.HTTPError:
+                except RuntimeError:
                     pass
             inferred_sample = [img for img in sample if img is not None]
             if not inferred_sample:
